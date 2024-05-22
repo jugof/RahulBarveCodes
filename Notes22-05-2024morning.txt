@@ -1,0 +1,209 @@
+22-05-2024MorningClass
+
+Hibernate without XML:
+	In any Hibernate based application, there are 2 
+	types of metadata:
+		Mapping and Configuration
+	
+	In both cases, it is possible to discard XML files.
+	
+	Mapping without XML:
+		It is possible to discard XML file for handling
+		mapping metadata through Annotations.
+		
+		Annotation based metadata is further divided 
+		into 2 types:
+			1. Hibernate Annotations
+			2. JPA Annotations
+		
+		Hibernate Annotations:
+			These are the annotations given by Hibernate
+			itself.
+			
+			It is a separate Annotation specific library.
+			
+		JPA Annotations:
+			These are the annotations given by JPA.
+			JPA stands for Jakarta Persistence API.
+			It is a Specification i.e. Set of Rules.
+			It is implemented by several ORM frameworks
+			like Hibernate, Toplink, Eclipselink, IBatis 
+			and so on.
+			
+			Therefore, JPA is an abstraction on the top of
+			some ORM.
+			
+			JPA Annotations:
+				In the context of JPA Annotations, a class 
+				is to be declared as an Entity class using
+				@Entity annotation. 
+				It is to be applied at the class level.
+				
+				Once the class is declared as an Entity class,
+				it needs to be mapped with the database table.
+				
+				This is done using @Table annotation.
+				It is to be applied at the class level.
+				
+				Once the class and table mapping is done, it
+				is necessary to map fields with columns and
+				declare at least 1 field as an identity.
+				
+				ID field is declared using @Id annotation.
+				It can be applied either at the field level
+				or at the getter method level of that field.
+				
+				The field is to be mapped with the column using
+				@Column annotation.
+				It can be applied either at the field level
+				or at the getter method level of that field.
+				
+				Even though @Id and @Column can be applied either
+				at field level or getter method level, it is not
+				possible to mix the targets.
+				
+				All these annotations must have same target.
+				
+				Out of the 4 main annotations, @Entity and @Id
+				are mandatory whereas @Table and @Column are optional.
+				
+				If @Table is omitted, by default it is taken same as
+				that of the class name.
+				
+				If @Column is omitted, by default it is taken same as
+				that of the field name.
+
+		Configuration without XML:
+			Instead of configuring the database specific properties
+			using XML or PROPERTIES file, it can be done programmatically.
+
+			To handle the configuration programmatically, 'Configuration'
+			class is used.
+			
+			It provides 2 relevant methods:
+				1. setProperty(String, String) --> name, value
+				2. setProperties(java.util.Properties)
+
+Data Retrieval:
+	Instead of storing the data, sometimes it is required to 
+	retrieve the data from database.
+	
+	This is done by 2 variants:
+		1. Retrieve single value
+		2. Retrieve multiple values
+		
+	Retrieving single value:
+		This is generally done against ID because ID
+		is unique.
+		It guarantees that one and only one value gets
+		returned.
+		
+		This is possible using 'find()' method.
+		
+		Since this is not a DML operation, 'Transaction'
+		is not required.
+		
+		The 'find()' method is used to find a specific entity value
+		based upon 2 things:
+			1. Entity Class Type
+			2. Entity ID
+			
+		The entity class type is mentioned using 'Class' 
+		class reference.
+		
+		The entity ID is mentioned using 'java.io.Serializable'
+		interface reference.
+		
+		This is because, in Hibernate, the fields which are
+		declared as identity, their type must be 'Serializable'.
+		
+		Therefore, the 'find()' method has following signature:
+			find(Class, Serializable)
+			
+Updating the Record:
+	To update the record, first it is necessary to 
+	load the specific entity in which updation is required.
+	
+	This is done using finding by Id.
+	
+	Once the entity is loaded, updations can be done by
+	calling relevant setter methods.
+	
+	After setters have been invoked, changes will be made into
+	object's state but not in the database.
+	
+	To reflect these changes, transaction has to be 
+	committed.
+	
+	This is because, the instance that is loaded using
+	'find()' method, already comes into MANAGED (PERSISTENT)
+	state.
+	
+	It means that any changes made within this instance, are
+	reflected into the database once the transaction is
+	committed.
+	
+Deleting the Record:
+	To delete the record, first it is necessary to load the
+	entity that is to be deleted.
+	
+	This is done using finding by Id.
+	
+	To perform deletion, Transaction is required because it is 
+	a DML operation.
+	
+	To actually delete the entity, remove() method 
+	is used.
+	
+	The changes are applied when transaction is committed.
+
+Re-attachment:
+	When the persistence context (Session) is closed,
+	the entity which was in the MANAGED (PERSISTENT) state,
+	becomes DETACHED.
+	
+	Sometimes, it is necessary to make changes in the entity which
+	is already DETACHED.
+	
+	This approach is generally useful for long running
+	transactions.
+	
+	Once the work is done, the new state needs to be reflected
+	back into the database.
+	
+	For this, the entity must be in PERSISTENT state.
+	If it is already in DETACHED state, it must be brought
+	back into PERSISTENT state.
+	
+	This is known as Re-attachment.
+	It is done using 'merge()' method of 'Session'
+	interface.
+	
+TODO 1:
+	Create an entity class: Stock to handle
+	Stock related information as per the following:
+		stock id (Numeric) Unique
+		name (Character)
+		price (Numeric)
+	
+	Create another entity class: StockHolder to handle
+	Stock Holder related information as per the following:
+		demat account no (Numeric) Unique
+		name (Character)
+		email (Character)
+		
+	Handle Annotation based mapping.
+	Handle Programmatic configuration.
+	
+	Implement CRUD operations for both these entities.
+	
+
+
+
+
+		
+
+
+
+
+	

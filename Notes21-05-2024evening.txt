@@ -1,0 +1,97 @@
+21-05-2024EveningClass
+
+Hibernate Application Workflow:
+	In Hibernate, there are 2 ways to provide configuration
+	metadata using some file.
+		1. Using .properties file
+		2. Using .xml file
+	
+	The standard names used by Hibernate for the above
+	files are 'hibernate.properties' and
+	'hibernate.cfg.xml' respectively.
+	
+	When 'Configuration' class object is created,
+	Hibernate looks for the configuration metadata 
+	inside 'hibernate.properties' file.
+	
+	If available, loads entries from that file.
+	
+	If it is not available and the respective entries
+	are available inside 'hibernate.cfg.xml' file, 
+	it is necessary to intimate Hibernate about this.
+	This is done using 'configure()' method.
+	
+	If the XML file name is other than 'hibernate.cfg.xml',
+	then overloaded 'configure()' method has to be used.
+
+Instance States:
+	The instance of an entity class is in one of the several
+	states which are associated with Persistence Context.
+	
+	Persistence Context is the single object that is 
+	solely responsible for handling persistence related
+	operations.
+	
+	In JDBC it is Connection and in Hibernate it is Session.
+
+	There are mainly 3 instance states:
+		1. Transient
+		2. Managed (Persistent)
+		3. Detached
+		
+	Transient:
+		In this state, the instance is not yet associated
+		with Persistence Context.
+		Therefore, the instance does not have its own
+		identity.
+		
+	Managed (Persistent):
+		Once the instance is associated with Persistence
+		Context, it becomes Managed or Persistent.
+		
+		In this case, the instance has its own identity.
+	
+	Detached:
+		The instance which was associated with Persistence
+		Context but the context is closed; then the instance
+		becomes detached.
+		
+	To reflect changes made within the instance towards
+	database, the instance has to be in Managed state.
+	
+Hibernate and JDBC:
+	Hibernate is an abstraction on the top of JDBC.
+	Therefore Session of Hibernate is also an abstraction
+	on the top of JDBC Connection.
+	
+	There are 2 more APIs used by Hibernate internally:
+		1. ConnectionProvider
+		2. TransactionFactory
+		
+	ConnectionProvider:
+		Accepts request from SessionFactory and provides
+		Connection to it.
+		
+	TransactionFactory:
+		Accepts request from Session and returns Transaction.
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+	
