@@ -1,0 +1,68 @@
+Associations / Relationships
+	In a business domain, there are several types of
+	entities. These entities might be related to each
+	other.
+	
+	This is expressed by mapping associations.
+	
+	In Java, associations are of 4 types:
+		1. One to One
+		2. One to Many
+		3. Many to One
+		4. Many to Many
+		
+	Associations are further divided into 2 types:
+		1. Unidirectional
+		2. Bidirectional
+		
+	This means that there are total 8 types of associations;
+	but in reality, there are 7.
+	
+	It is because One to Many Bidirectional and
+	Many to One Bidirectional are same.
+
+Unidirectional Associations:
+	This includes a single direction.
+	One entity holds reference to another entity but
+	that 2nd entity does not hold any reference to
+	1st entity.
+	
+	One to One Unidirectional:
+		In this association, one entity holds a reference
+		to another entity; but that entity does not hold
+		any reference back to 1st entity.
+		
+		To map One-to-One association, Hibernate provides
+		@OneToOne annotation.
+		
+	One to Many Unidirectional:
+		In this association, one entity holds many references
+		to another entity; but that 2nd entity does not hold
+		any reference back to 1st entity.
+		
+		To map One-to-Many association, Hibernate provides
+		@OneToMany annotation.
+		
+Bidirectional Associations:
+	This includes both the directions. 
+	Both the entities hold reference or references to 
+	each other.
+	
+	Since it is a bidirectional association, developer
+	has to set both ends of the association.
+	
+	However, it is necessary to intimate Hibernate about
+	the Owning side and the Inverse side.
+	
+	To handle Many-to-Many Association, Hibernate provides
+	@ManyToMany annotation.
+	
+	Since it is a Many-to-Many Association, it is also
+	necessary to configure 3rd table which is Join Table.
+	This is done using @JoinTable annotation.
+	
+
+		
+		
+		
+		

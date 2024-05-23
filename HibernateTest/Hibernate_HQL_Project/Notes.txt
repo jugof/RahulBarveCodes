@@ -1,0 +1,68 @@
+Hitting the Database for Fetching Data:
+	In order to fetch data from database, find() method
+	is used which accepts identity.
+	
+	In order to fetch many records, Hibernate provides
+	HQL: Hibernate Query Language.
+	
+	It is a query language that works upon classes and 
+	their properties rather than tables and columns.
+	
+	Eventually HQL query gets converted into SQL query
+	and fired across database.
+	
+	To handle queries using HQL, Hibernate provides
+	org.hibernate.query.Query interface.
+	
+	HQL mainly works with 2 clauses:
+		1. FROM
+		2. SELECT
+		
+	FROM:
+		It is especially used for using the entire data
+		of the entity.	
+		
+		It makes the fetching process simple.
+		It causes memory implications if the entire
+		data is not used.
+		
+		This problem can be resolved using SELECT clause.
+		
+	SELECT:
+		It allows to select specific data from the entity.
+		This resolves memory implication problems.
+		
+		Unlike FROM clause, SELECT clause does not populate
+		List holding Entity class objects.
+		
+		Rather it populates List holding objects of type
+		Array of type java.lang.Object.
+		
+		Although SELECT clause can solve memory implication
+		problem, it is difficult to manage because the
+		populated list contains Array of Objects typed
+		objects.
+		
+		This can be simplified using Constructor Expression.
+		It allows to load objects of specific type as per
+		the requirement.
+		
+TODO 2:
+	Use HQL to load data about Stock and StockHolder.
+	Make use of FROM, SELECT with Constructor Expression
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+	
