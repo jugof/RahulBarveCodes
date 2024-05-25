@@ -1,0 +1,229 @@
+Spring:
+	Spring is a Java Based Framework used to 
+	handle various aspects of the application.
+
+	Spring emphasizes upon Component Driven
+	Architecture.
+
+	Component:
+		A component is an application level
+		reusable piece of code.
+
+	Components are of 2 types:
+		1. Unmanaged
+		2. Managed
+
+	Unmanaged Components:
+	Components of which life cycle is managed 
+	explicitly by developer are called as
+	Unmanaged Components.
+
+	They are instantiated explicitly using 'new'
+	operator.
+
+	Managed Components:
+	Components of which life cycle gets managed 
+	implicitly are called as Managed Components.
+
+	They are not instantiated explicitly using 
+	'new' operator.
+
+	In general, Java SE (Core Java) consists of
+	Unmanaged Components whereas Java EE consists
+	of Managed Components.
+
+	Typically, In Java SE, components are independent.
+	Their classes may not have to inherit any other class
+	or even implement any interface.
+
+	Such classes are called as POJO.
+	POJO stands for Plain Old Java Object.
+
+	On the other hand, in Java EE, components are
+	always dependent.
+
+	E.g.
+	Servlet implementation class always has to
+	depend upon some Servlet specific API.
+	public class HelloServlet extends HttpServlet{ }
+	Their classes are not POJOs.
+
+	Spring provides dual service:
+	It manages the components even though they
+	are POJOs.
+
+	Spring provides several services. It can
+	be used to acquire enterprise services 
+	(Higher End Services).
+	E.g.
+		1. Scalability
+		2. Security
+		3. Transaction Management
+		4. Persistency
+		5. Asynchronous Messaging
+
+	Spring handles various aspects with the help
+	of several modules which are known as Spring
+	Modules.
+
+	The commonly used Spring Modules are:
+		1. Spring Core
+		2. Spring AOP
+		3. Spring Data Access
+		4. Spring MVC
+		5. Spring REST
+		6. Spring Security
+
+	Spring Core:
+		It handles core functionalities of Spring.
+		Mainly it consists of:
+			1. Bean Management
+			2. Dependency Injection
+
+	Spring AOP:
+		AOP stands for Aspect Oriented Programming.
+		Spring allows to decouple secondary concerns
+		from primary concerns.
+
+	Spring Data Access:
+		Spring does not attempt to have its own 
+		persistence framework. It provides hooks
+		(adapters) for several persistence related
+		technologies e.g. JDBC, Hibernate, JPA etc.
+
+	Spring MVC:
+		Spring provides its own MVC architecture.
+		MVC stands for Model-View-Controller.
+		It can be used to build Web Applications.
+
+	Spring REST:
+		Spring provides awesome support for RESTful
+		web services.
+
+		REST APIs are directly accessed using simple
+		HTTP protocol.
+
+	Spring Security:
+		Spring provides support to secure applications.
+		Typically this is done at 2 levels:
+			1. Authentication
+			2. Authorization
+	
+	Spring Core Module:
+		This is the module at the core of Spring.
+		It mainly consists of 2 functionalities:
+		1. Bean Management
+		2. Dependency Injection
+
+	Bean Management:
+		Spring can provide life cycle management
+		support for the components even though
+		they are POJO.
+
+		But to acquire support from Spring, the component
+		must be declared or registered within Spring's
+		environment.
+
+		Every component declared to Spring is
+		known as Spring Bean.
+
+	Dependency Injection:
+		Beans declared to Spring may have dependencies.
+		When the request is made for outer bean;
+		Spring has to build inner bean, inject the same
+		into outer bean and return that outer bean
+		back to the caller.
+
+		That means, Spring injects the required dependencies.
+		This is known as Dependency Injection.
+
+		DI is also known as IOC (Inversion of Control)
+		because now the control is shifted to Spring Container.
+
+Getting Started with First Example:
+	1. Install the required Spring libraries.
+	   This is done by 2 ways:
+		a) Download them manually from internet.
+		b) Using some build tools like Maven, Gradle etc.
+		
+		Create Maven Based Project and add Spring Context
+		Maven Dependency.
+		
+	2. Create an Interface and declare some method into it.
+
+	3. Create an Implementation Class of that interface.
+	
+	4. Declare a bean of that class type to Spring's Environment
+	   so that Spring can provide support for the same.
+	   
+	   This is done using configuration unit of Spring.
+	   There are 2 options to configure beans in the
+	   configuration unit:
+	   	a) Using XML
+	   	b) Using Annotations
+	   	
+	   As far as XML is concerned, it can an XML file with any name.
+	   However, by convention, it is spring-config.xml.
+	   
+	   This file can be placed anywhere, might be outside the project
+	   or within the project as well. 
+	   
+	   As a standard practice, it has to be within the project, under:
+	   'src/main/resources'
+	   
+	5. Write the Main Program:
+		Once the bean is declared within the configuration
+		unit, at any time client program can make a request
+		for that bean.
+		
+		This is done using Spring specific library
+		called as 'ApplicationContext'
+		
+		It is an interface which is to be used through
+		one of its implementation classes.
+		
+		There are several implementation classes available where the
+		most frequently used is 
+		'FileSystemXmlApplicationContext'
+		
+	ApplicationContext:
+		It is a service provided by Spring to load the
+		beans from the configuration unit.
+		
+		At API level, it is an interface and has various implementations.
+		The most commonly or frequently used is:
+			'FileSystemXmlApplicationContext'
+			
+		It loads the beans from the configuration unit which is an
+		XML file located on the File System.
+		
+		Another implementation of ApplicationContext is:
+			ClassPathXmlApplicationContext
+			
+		It loads the beans from the configuration unit which is an XML
+		file located in Project's Classpath.
+		
+		There are generally 2 ways to bring this file into
+		project's classpath:
+			1. Create a JAR containing this XML file and 
+				add it to the build path (Classpath).
+			2. In Maven based project, if the file is available
+			   under 'src/main/resources', it automatically gets
+			   added into project's classpath.
+			   
+TODO 3:
+	Create a Maven Based project for Spring and
+	copy previous classes : Stock and StockHolder 
+	into this project.
+	
+	Configure 2 beans: 1 for each, obtain them, call
+	setter methods on them and display their information.
+		
+		
+
+
+
+
+
+
+

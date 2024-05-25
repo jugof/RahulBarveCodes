@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Declaring a Bean of type HelloService
+    from package: example.spring.core 
+    with an ID: greet -->
+    <bean 
+    	class="example.spring.core.HelloService"
+    	id="greet"/>
+    	
+    <!--Declaring a Bean of type WelcomeService
+    from package: example.spring.core 
+    with an ID: greet2 -->
+    <bean 
+    	class="example.spring.core.WelcomeService"
+    	id="greet2"/>
+    	
+    <bean 
+    	class="example.spring.core.HelloService"
+    	id="greet3"/>
+
+</beans>
