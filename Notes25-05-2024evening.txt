@@ -1,0 +1,44 @@
+25-05-2024Evening
+	
+Dependency Injection:
+	Beans registered in the configuration unit may have
+	dependencies.
+	
+	When client program makes a request to Spring for such beans,
+	Spring has to inject values for these dependencies.
+	
+	This is known as Dependency Injection.
+	
+	It is mainly handled by 2 ways:
+		1. Setter Injection:
+			In this approach, Spring identifies the dependencies
+			(properties) of the bean and injects values into them
+			using setter methods.
+			
+		2. Constructor Injection:
+			In this approach, Spring identifies the dependencies
+			(properties) of the bean and injects values into them
+			using constructors.
+			
+			By default, the sequence of the arguments is considered as:
+			Left to Right in Java and Top to Bottom in XML.	
+		
+			However, it can be customized using 'index' attribute.
+			
+Dependency Injection for Reference Types:
+	One bean may have dependency on another bean or several
+	beans.
+	
+	When a client program makes a request for Outer Bean, Spring has
+	to build inner bean, inject it into outer bean and return that.
+		
+	To handle this, there are 2 ways:
+		1. Using 'ref' as an attribute
+		2. Using '<ref>' as an element
+	
+
+
+
+
+
+

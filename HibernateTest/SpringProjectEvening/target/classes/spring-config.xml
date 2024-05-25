@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Declaring a Bean of type HelloService
+    from package: example.spring.core 
+    with an ID: greet -->
+    <bean 
+    	class="example.spring.core.HelloService"
+    	id="greet"/>
+    	
+    <!--Declaring a Bean of type WelcomeService
+    from package: example.spring.core 
+    with an ID: greet2 -->
+    <bean 
+    	class="example.spring.core.WelcomeService"
+    	id="greet2"/>
+    	
+    <bean 
+    	class="example.spring.core.HelloService"
+    	id="greet3"/>
+    <!--Declaring a Bean of type UserService
+    from package: example.spring.core 
+    with an ID: userBean and injecting values for
+    its properties: userName and age using 
+    Setter Injection-->	
+    
+    <bean 
+    	class="example.spring.core.UserService" 
+    	id="userBean">
+    	<property name="userName" value="James"/>
+    	<property name="age" value="73"/>
+    </bean>
+    <bean 
+    	class="example.spring.core.UserService" 
+    	id="userBean2">
+    	<property name="userName" value="Micky"/>
+    	<property name="age" value="47"/>
+    </bean>
+    <bean 
+    	class="example.spring.core.UserService" 
+    	id="userBean3">
+    	<constructor-arg value="Jack"/>
+    	<constructor-arg value="40"/>
+    </bean>
+    
+    <bean 
+    	class="example.spring.core.UserService" 
+    	id="userBean4">
+    	<constructor-arg value="Mark" index="1"/>
+    	<constructor-arg value="25" index="0"/>
+    </bean>
+
+</beans>
