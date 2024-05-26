@@ -1,0 +1,82 @@
+26-05-2024Evening
+	
+Pure Annotation Based Configuration:
+	Although Java Based Configuration can be used to
+	configure beans, still developer has to configure
+	them using 'new' operator.
+	
+	In Pure Annotation based approach, the object creation
+	does not take place using 'new' operator.
+	
+	Rather it takes place via Java's Reflection semantics.
+
+	In this approach, the class of which the bean is to configured
+	must be declared as a Managed Component to Spring.
+	
+	This is possible using @Component annotation.
+	It is to be applied at the class level.
+	
+	Once the component is declared, at any time its 
+	instance can be obtained by the client program.
+	
+	This is done using overloaded 'getBean()' method
+	which accepts a reference of type: java.lang.Class.
+	
+	Once the component is declared using @Component,
+	the configuration unit (@Configuration) must be able
+	to identify it.
+	
+	In order to ask Spring to identify @Component related
+	classes, scanning of package is required.
+	
+	This phase is called as Component Scanning.
+	To handle scanning, there is an annotation:
+		@ComponentScan
+		
+	It is to be applied at the class level of the
+	configuration specific class.
+	
+	Once @ComponentScan is used, by default it scans
+	the package which is same as that of the package
+	of the configuration specific class.
+	
+	To scan other packages, their names must be mentioned
+	using 'basePackages' attribute.
+	
+	However, once this attribute is used, the same package
+	does not get scanned automatically.
+	
+	It is to be scanned explicitly using its name
+	in that attribute.
+	
+	It is also possible to obtain @Component annotated
+	beans using ID by supplying it as a parameter to
+	that annotation.
+	
+
+
+
+
+
+
+
+
+
+	
+	
+		 
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	

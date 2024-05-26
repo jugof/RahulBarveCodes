@@ -1,0 +1,260 @@
+Configuration without XML:
+	Even though XML is used as a configuration unit for
+	Spring Beans, in recent years, 2nd approach is widely used:
+		Annotation Based Configuration
+	
+	This approach enables developers to quick start the configuration.
+	Allowing Rapid Application Development (RAD).
+	
+	Annotation Based Configuration can be implemented
+	by 2 ways:
+		1. Java Based Configuration
+		2. Pure Annotation Based Configuration
+		
+	Java Based Configuration:
+		In this approach, the configuration unit is specified by
+		writing a Java Class.
+		
+		Once the class is created, it is necessary to intimate Spring
+		that this class is not an ordinary class; rather it is the
+		configuration unit of the application.
+		
+		This is done using @Configuration annotation.
+		It is to be applied at the class level.
+		
+		Once the class is marked as Configuration Unit, it can
+		be used to configure beans.
+		
+		This is done by defining a method that returns an
+		object of the class of which the bean is to 
+		be configured. 
+		
+		Once the method is defined, it is necessary to intimate Spring
+		that this method is not an ordinary method; rather it is a
+		bean configuration specific method.
+		
+		This is done using @Bean annotation.
+		It is to be applied at the method level.
+		
+		By default, the bean gets configured with an ID
+		which is the method name.
+		
+		Obtaining Beans:
+			Once the beans are configured in the configuration
+			unit, any time they can be obtained back.
+			
+			This is done using 
+			AnnotationConfigApplicationContext class.
+			
+			AnnotationConfigApplicationContext must understand
+			the configuration unit from which the beans are
+			to be loaded.
+			
+			This is done by registration of Configuration Unit
+			with AnnotationConfigApplicationContext.
+			
+			This is done using 'register()' method of
+			AnnotationConfigApplicationContext class.
+			
+			Once the registration is done, to apply the
+			changes, it is necessary to refresh the context.
+			
+			This is done using 'refresh()' method.
+			
+	Simplifying AnnotationConfigApplicationContext:
+		To load the beans using AnnotationConfigApplicationContext,
+		it is necessary to register the configuration unit with
+		AnnotationConfigApplicationContext.
+		
+		After registration, to apply changes, it is necessary
+		to refresh the context.
+		
+		This can be simplified in such a way that registration and
+		context refreshment is done implicitly.
+		
+		This is possible using parameterized constructor
+		of AnnotationConfigApplicationContext.
+		
+		It handles both these activities implicitly.
+		
+	Changing Bean ID:
+		By default, the ID of the bean is taken as the
+		name of the method on which @Bean annotation is
+		applied.
+		
+		It can be changed by passing it as a parameter
+		for @Bean annotation.
+		
+	Exploring More Annotations:
+		To configure beans with different strategies, 
+		relevant annotations have been provided.
+		
+		E.g.
+		@Lazy is used for Lazy Loading
+		@Scope is used for changing the scope to something.
+		Default is singleton.
+		
+Bean Wiring:
+	When one bean depends upon another bean, Spring has to
+	resolve that dependency.
+	
+	Spring creates inner bean first and injects it into
+	outer bean and returns that outer bean back to the
+	client.
+	
+	This process of connecting one bean to another is called
+	as Bean Wiring.
+	
+	Bean Wiring is of 2 types:
+		1. Explicit
+		2. Implicit
+		
+	Explicit Wiring:
+		In this case, the bean to be wired with another bean
+		is explicitly configured in the configuration unit.
+		
+	Implicit Wiring:
+		In this case, instead of explicitly wiring the bean,
+		Spring automatically figures it out and wires
+		it.
+		
+		Therefore this type of wiring is also called as
+		Auto Wiring.
+		
+		Spring provides @Autowired annotation to implement it.
+		It can be applied at various levels:
+			field
+			setter method level
+			constructor
+			
+		How Auto-wiring works?
+		Spring identifies the type of the field on which
+		@Autowired annotation is applied.
+		
+		Then it checks for any bean in the configuration unit
+		of which type matches with that field type.
+		
+		Once the match is found, it wires that bean.
+		
+		If the bean is not found, exception is raised.
+		This means, Spring mandates to have at least 1
+		bean.
+		
+		This can be configured to make it optional
+		by using 'required' attribute set to 'false'.
+		
+		If multiple beans are found, it results into
+		exception.
+		
+		This can be resolved by 2 ways:
+			1. Using @Primary
+			2. Using @Qualifier
+			
+		@Primary is used in the configuration specific
+		class to mark the specific bean as Primary.
+		
+		@Qualfier is used in the bean specific class to
+		qualify the bean with the matching ID.
+
+TODO 4:
+	Create a class StockHolding with following attributes:
+		holdingId (Numeric)
+		stockRef (Stock)//Reliance, 8000
+		stockHolderRef (StockHolder)//James
+		quantity (Numeric)//50
+		
+	Configure 1 bean each of type Stock, StockHolder
+	and StockHolding.
+	
+	Implement Auto-wiring.
+	Use Java Based Configuration.
+	
+	Write a main program that loads a bean of type:
+	StockHolding and prints following information:
+		Name of the Holder --> James
+		Name of the Stock --> Reliance
+		Valuation of the Stock --> 400000
+		
+	You may have to add relevant method in StockHolding
+	class to get these results.
+	
+Pure Annotation Based Configuration:
+	Although Java Based Configuration can be used to
+	configure beans, still developer has to configure
+	them using 'new' operator.
+	
+	In Pure Annotation based approach, the object creation
+	does not take place using 'new' operator.
+	
+	Rather it takes place via Java's Reflection semantics.
+
+	In this approach, the class of which the bean is to configured
+	must be declared as a Managed Component to Spring.
+	
+	This is possible using @Component annotation.
+	It is to be applied at the class level.
+	
+	Once the component is declared, at any time its 
+	instance can be obtained by the client program.
+	
+	This is done using overloaded 'getBean()' method
+	which accepts a reference of type: java.lang.Class.
+	
+	Once the component is declared using @Component,
+	the configuration unit (@Configuration) must be able
+	to identify it.
+	
+	In order to ask Spring to identify @Component related
+	classes, scanning of package is required.
+	
+	This phase is called as Component Scanning.
+	To handle scanning, there is an annotation:
+		@ComponentScan
+		
+	It is to be applied at the class level of the
+	configuration specific class.
+	
+	Once @ComponentScan is used, by default it scans
+	the package which is same as that of the package
+	of the configuration specific class.
+	
+	To scan other packages, their names must be mentioned
+	using 'basePackages' attribute.
+	
+	However, once this attribute is used, the same package
+	does not get scanned automatically.
+	
+	It is to be scanned explicitly using its name
+	in that attribute.
+	
+	It is also possible to obtain @Component annotated
+	beans using ID by supplying it as a parameter to
+	that annotation.
+	
+
+
+
+
+
+
+
+
+
+	
+	
+		 
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
