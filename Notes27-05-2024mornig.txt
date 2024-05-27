@@ -1,0 +1,274 @@
+27-05-2024mornig
+
+
+Spring AOP:
+	AOP stands for Aspect Oriented Programming.
+	
+	AOP is a programming model that allows to decouple
+	secondary concerns from primary concerns.
+	
+	These secondary concerns are the functionalities that
+	cut across several primary functionalities.
+	
+	Hence they are also called as Cross Cutting Concerns.
+	
+	AOP programming model brings following benefits:
+		1. Since secondary concerns are separated, they
+		   can be reused.
+		   
+		2. Business layer developers can focus upon the
+		   core business functionality.
+		   
+	AOP Terminologies:
+		There are 5 terminologies in the context of
+		Spring AOP:
+			1. Advice
+			2. Join Point
+			3. Point Cut
+			4. Aspect
+			5. Proxy
+			
+		Advice:
+			It defines WHAT and WHEN of an aspect.
+			It specifies WHAT to do and WHEN to do.
+			
+		Join Point:
+			It is the probable location where an aspect
+			CAN BE plugged-in.
+			
+		Point Cut:
+			It is the exact location where an aspect is
+			to be plugged-in.
+			It specifies WHERE to do.
+		
+		Aspect:
+			It is the merger of Advice and Point Cut.
+			It defines WHAT, WHEN and WHERE
+			
+		Proxy:
+			In between the client program and the actual target
+			object, there is some mediator comes in and intercepts
+			that request.
+			
+			It is called as proxy.
+			
+			The process of this proxy generation is called as Weaving.
+			This done by Spring's AOP Container.
+			
+			In general weaving takes place at 3 levels:
+				1. Compile Time
+				2. Class Load Time
+				3. Runtime
+			
+			In Spring AOP, aspects are always woven at runtime.
+			
+		Types of Advices:
+			In Spring AOP, advices are of 5 types:
+				1. Before
+				2. After Returning
+				3. After Throwing
+				4. After
+				5. Around
+				
+			Before:
+				It handles the functionality that is to be
+				invoked before the execution of target bean's
+				method.
+				
+			After Returning:
+				It handles the functionality that is to be
+				invoked after the successful execution of target bean's
+				method.
+				
+			After Throwing:
+				It handles the functionality that is to be
+				invoked when the target bean's method throws
+				some exception.
+			
+			After:
+				It handles the functionality that is to be
+				invoked irrespective of whether the target bean's
+				method executes successfully or not.
+				
+			Around:
+				It is not a separate advice; rather it is merger of
+				all the above mentioned advices.
+		
+	AOP Support in Spring:
+		AOP in Spring is supported by a 3rd party library called
+		as AspectJ.
+		
+		It provides relevant annotations to configure AOP.
+		E.g.
+			1. @Before
+			2. @AfterReturning
+			3. @AfterThrowing
+			4. @After
+			5. @Around
+			6. @Aspect
+			7. @Pointcut
+			8. @EnableAspectJAutoProxy (From Spring)
+			
+		The first 5 annotations are relevant to the 
+		corresponding types of advices.
+		
+		@Aspect is used to mark the class as an Aspect.
+		This class is meant for handling secondary concerns
+		of the application.
+		
+		@Pointcut
+		It is used to declare the Point Cut.
+		It is applied at the method level to mark that 
+		method as a point cut.
+		This method is just used for forward referencing.
+		
+		@EnableAspectJAutoProxy
+		It is used to enable proxy support in the application.
+		It is to be applied at the class level of the
+		configuration specific class.
+		
+Implementing AOP:
+	1. Install AOP specific dependencies: AspectJ
+		Since AOP in Spring is supported using 3rd 
+		party library AspectJ, it is necessary to 
+		add the relevant dependencies.
+		
+		There are 2 dependencies required:
+			1. aspectjrt
+			2. aspectjweaver
+			
+	2. Create an Aspect specific class.
+		To implement secondary concerns, it is necessary
+		to define a class which handles the relevant logic.
+		
+		Once the class is created, it must be informed to Spring
+		that this is an Aspect specific class.
+		
+		This is done by using @Aspect annotation at the
+		class level.
+		
+		To actually implement secondary concerns, it is
+		necessary to define relevant methods.
+		
+		These methods specify WHAT to do; but it is also
+		required to specify WHEN to do.
+		
+		This is done by annotating these methods accordingly.
+		
+		Once WHAT and WHEN is mentioned, it is also needed
+		to specify WHERE to do.
+		
+		This is done using a Point Cut.
+		
+		This requires a method that acts as a Point Cut.
+		That method is just used for forward referencing.
+		To indicate this method as a Point Cut, it is
+		to be annotated using @Pointcut annotation.
+		
+		This annotation works with several designators;
+		the most commonly used is 'execution' 
+		
+	3. Create a Target class (Bean specific class)
+		This is the class which handles the logic for
+		primary concern.
+		
+		Eventually, its bean is obtained by the client program.
+		
+	4. Create configuration specific class.
+			Definitely this class must be annotated with
+			@Configuration and @ComponentScan as the 
+			scanning of component is required.
+			
+			However, since the example involves AOP module,
+			it is necessary to enable Proxy generation
+			support.
+			
+			This is done by using @EnableAspectJAutoProxy at this
+			class level.
+			
+	5. Write main program
+	
+	
+	How Proxy is generated?
+		Typically there are 2 ways by which proxies 
+		are generated.
+		
+		1. Inheritance
+		2. Containment
+		
+	Spring supports both approaches. The approach followed
+	by Spring depends upon the implementation.
+	
+	Implementing AOP using Around Advice:
+		Instead of implementing separate types of advices,
+		it is possible to merge all these advices into a single
+		one called as Around Advice.
+		
+		Since all the advices are combined into a single one, 
+		it requires a single 'public' method which gives a call
+		to other 'private' methods.
+		
+		Even though all these 'private' methods are called
+		from single 'public' method, it is necessary to separate
+		their invocations.
+		
+		E.g.
+			In between the method for Before Advice and the method
+			for After Returning Advice, a call must be made to
+			target bean's method.
+			
+		This is possible using an interface:
+			ProceedingJoinPoint
+		It provides a method: proceed()
+		
+		The reference of type: ProceedingJoinPoint is
+		captured by the Around Advice specific method.
+		
+		Once this method is defined, it is to be configured
+		as Around Advice.
+		
+		This is done using @Around annotation.
+		
+TODO 5:
+	Create a separate Spring AOP project to implement following:
+		1. Copy Stock class from previous project as it is.
+		2. Create a class StockProcessor as per the following:
+			Declare a field stockRef of type Stock.
+			
+			Define a method:
+				public void changePrice(int/float price)
+				
+			The method must change the price of the Stock held 
+			inside this processor.
+			
+			The method must throw unchecked exception:
+				NegativePriceException
+			if the supplied price value is negative.
+			
+		Apply aspect for 'changePrice()' of StockProcessor as per
+		the following:
+			1. Display timestamp before changing the price
+			2. Display timestamp after successfully changing the price
+			3. Display timestamp with some error message if there is a problem
+			   in changing the price
+			   
+			(Hint: Use LocalDateTime class from java.time package)
+			
+		Write a main program to test this functionality.
+		(Type of Advice is of your choice)
+			
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
