@@ -1,0 +1,317 @@
+Spring MVC:
+	Spring framework provides a separate module known
+	as Spring MVC.
+	
+	It is used to build web based applications.
+	
+	MVC:
+		MVC stands for Model-View-Controller.
+		It is a commonly used design pattern or
+		architecture for building web applications.
+		
+		M -> Model:
+			It is responsible for handling business 
+			logic of the application.
+			
+			It is also responsible for handling application
+			specific data.
+			
+			Typically, in web applications, it is implemented
+			using simple Java classes (Java Beans) or
+			Enterprise Java Beans (EJBs)
+			
+		V -> View:
+			It is responsible for handling presentation
+			logic of the application.
+			
+			It is used to build UI layer.
+			
+			Typically, in web applications, it is implemented
+			using HTML, JSP etc.
+			
+		C -> Controller:
+			It is responsible for handling navigation logic
+			or workflow of the application.
+			
+			It is the bridge between Model and View.
+			
+			Typically, in web applications, it is implemented
+			using Servlet.
+			
+		MVC Variants:
+			There are 2 variants of MVC.
+			1. MVC 1
+			2. MVC 2
+			
+		MVC 1:
+			In this approach, all the aspects: 
+				Model, View and Controller are implemented
+				using JSPs.
+				
+			Since everything is handled using JSPs, it
+			is called as Page Centric architecture.
+			
+			Since this brings tight coupling, it is
+			not much recommended.
+			
+		MVC 2:
+			In this approach, all the aspects: 
+				Model, View and Controller are separated from
+				each other.
+				
+				Due to this separation, it brings Loose Coupling.
+			
+				Since controller is implemented using Servlets,
+				it is also called as Servlet centric architecture.
+				
+				It is highly recommended.
+				
+	Spring MVC:
+		Spring MVC is completely based upon MVC 2 pattern.
+		It enforces to follow MVC 2.
+		
+		In addition to this, Spring MVC follows one more pattern:
+			Front Controller
+			
+		It is a single controller (servlet) available 
+		in the application which accepts all the incoming
+		requests.
+		
+		Further, depending upon the actual request, delegation 
+		takes place.
+		
+		Components in Spring MVC:
+			Spring MVC mainly consists of 5 components:
+			1. Front Controller
+			2. Controller
+			3. Model
+			4. View
+			5. View Resolver
+			
+			Front Controller:
+				In the entire application, there is one and
+				only one servlet to which all requests hit.
+			
+				Therefore, it is called as Front Controller.
+			
+				It is predefined in Spring MVC and it is called
+				as DispatcherServlet.
+			
+			Controller:
+				It is responsible for handling the request.
+				It acts as a gateway to Model for further
+				processing.
+				After processing, it returns view name back
+				to the Front Controller.
+				
+				It is implemented using a simple Java class.
+				
+			Model:
+				It is responsible for processing the request.
+				It is also responsible for holding application
+				specific data.
+				
+				It is implemented using a simple Java class.
+			
+			View:
+				It is responsible for rendering the data i.e.
+				presenting the data.
+			
+				It is to be implemented using JSPs.
+				
+			View Resolver:
+				It is responsible for resolving the view based
+				upon the view name returned from Controller.
+				
+				It is used by Front Controller to actually render
+				the exact view.
+				
+				There are several view resolvers available in Spring
+				MVC. The most commonly and frequently used is:
+					InternalResourceViewResolver
+			
+			Spring MVC Application Workflow:
+				1. Every request hits Front Controller:
+					DispatcherServlet
+				2. Depending upon the request, Front Controller
+				   invokes appropriate Controller
+				3. Depending upon the processing of the request,
+				   either Controller itself handles it or
+				   delegates the control to Model
+				4. After processing the request, Controller returns
+				   view name back to Front Controller
+				5. Front Controller receives the view name returned by
+				   Controller and uses View Resolver to resolve the view
+				   using that view name.
+				6. Finally renders the actual view back to the client.
+				      
+Spring MVC Application Steps:
+	1. Create Maven based web project.
+	
+	2. Set the appropriate JDK version
+		(Including Compiler level and Project Facets for Java)
+		
+	3. Set the target runtime for Tomcat.
+		(Project Facet for Dynamic Web Module -> Latest Version as per the Tomcat)
+		
+	4. Add Spring Web Mvc Maven Dependency
+	
+	5. Configure Front Controller - DispatcherServlet		
+		This can be done by 2 ways:
+			1. Declaratively
+			2. Programmatically
+			
+		In declarative approach, web.xml file is used.
+		However, new versions of servlet specification make this
+		file optional.
+		
+		Therefore, in case to avoid web.xml, programmatic configuration
+		is used.
+		
+		This is done using an interface:
+			WebApplicationInitializer
+		The actual configuration takes place using its
+		implementation class.
+		
+		The interface provides a method: onStartup()
+		It gets called as soon as the application is loaded.
+		
+		In this method all the web application specific configuration
+		takes place including DispatcherServlet's configuration.
+		
+		The DispatcherServlet is registered using an inner interface:
+			ServletRegistration.Dynamic.
+			
+		Its reference is obtained through ServletContext.
+		It is the application specific object.
+		
+	6. Provide a Controller
+		In Spring MVC, Controller is implemented by using
+		a simple Java class.
+		
+		Once the class is defined, it must be told to Spring MVC
+		that this class is a Controller implementation class.
+		
+		This is done by annotating it using @Controller
+		
+		After configuring this class as a Controller, it
+		is necessary to configure the URL.
+		
+		This is done by defining a method which returns a
+		view name.
+		
+		This is method is called as Request Handling Method.
+		Once the method is defined, it must be told to Spring MVC
+		that this method is a Request Handling Method.
+		
+		This is done by annotating it using @RequestMapping.
+		
+	7.  Provide a View
+	
+	8. 	Configure View Resolver
+			Front Controller needs to resolve the view
+			based upon the view name returned from controller.
+			
+			This is possible using View Resolver. It needs to be configured.
+			The most commonly used in InternalResourceViewResolver.
+			
+			This needs some callback mechanism which is possible using an
+			interface: WebMvcConfigurer 
+			
+			It is to be used through its implementation class.
+			It is a marker interface.	
+	
+	Form Processing:
+		Form Processing is a very common requirement in
+		web applications.
+		
+		User enters data using some HTML form. Once
+		SUBMIT button is clicked, the entered data goes
+		towards Server and needs to be processed.
+		
+		Typically, in this approach, HTTP POST request
+		is preferred.
+		
+		In Form Processing, when client makes a request, some information
+		is sent towards server.
+		
+		This is called as Request Parameter.
+		
+		In the controller layer, this parameter value is
+		to be captured.
+		
+		It is done by using parameterized request handling method.
+		
+		Once the parameters are declared, it is necessary to perform
+		binding between request parameters and the variables declared 
+		in this request handling method.
+		
+		This is done using @RequestParam annotation.
+		It is applied at the method signature parameter level.
+		
+	Rendering Data in Result Page:
+		Sometimes, it is necessary to display data in the
+		resultant JSP page.
+		
+		This is handled using a separate Model object
+		which is accepted as a parameter in the request
+		handling method.
+		
+		This model object can be used to store the data that is to be
+		rendered back to client.
+		
+		This is done using 'addAttribute()' method.
+		
+		By default, this attribute gets added at REQUEST level.
+		In order to add it at SESSION level, @SessionAttributes annotation
+		is used. It is to be applied at the class level of Controller class.
+		
+TODO 6:
+	Create Spring MVC based application that provides following
+	URLs:
+		1. /home
+		2. /create
+		3. /getOne
+		4. /getAll
+		5. /createStock
+		6. /getOneStock
+		
+		/home:
+			Must render home.jsp that shows 3 Hyperlinks:
+				Create New Stock --> /create
+				Get One Stock  --> getOne
+				Get All Stocks --> /getAll
+				
+		/create:
+			Must render create.jsp that provides a FORM to 
+			accept information about Stock.
+			On clicking SUBMIT, must trigger the URL
+			/createStock accepting POST request and 
+			store Stock data into Stock Repository
+			and render the HOME page.
+			
+		/getOne:
+			Must render getOne.jsp that provides a FORM to
+			accept Stock ID with SUBMIT button.
+			
+			On clicking SUBMIT, must trigger the URL
+			/getOneStock accepting POST request and display
+			the result page with the loaded stock.
+		
+		/getAll:
+			Must fetch all the available stocks and 
+			display them using getAll.jsp
+			
+		(Maintain Stock Data into Stock Repository 
+			which is an In-Memory structure)
+		
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
