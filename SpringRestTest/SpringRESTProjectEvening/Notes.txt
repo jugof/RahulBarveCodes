@@ -1,0 +1,414 @@
+Spring REST:
+	REST stands for REpresentational State Transfer.
+	It is one type of Web Service.
+	
+	What is Web Service:
+		Web Service is a software system designed to
+		have Machine to Machine, Interoperable Communication
+		Over the network.
+		
+		It allows to implement B2B programming model.
+		
+		There are 2 types of Web Services.
+			1. SOAP Based Web Services
+			2. RESTful Web Services
+			
+		SOAP Based Web Services:
+			In this approach, the data between service
+			provider and consumer is exchanged using some
+			medium known as XML.
+			
+			XML maintains data in a structured format
+			and it is a text data.
+			
+			Due to this, it brings interoperability.
+			
+			The protocol used for interaction is HTTP and
+			data is sent in the form of XML.
+			
+			This combination is known as SOAP.
+			
+			SOAP stands for Simple Object Access Protocol.
+			That means:
+				SOAP = HTTP + XML
+				
+		RESTful Web Services:
+			In recent years, RESTful Web Service has become
+			an emerging technology that is more information-centric,
+			and an alternative to SOAP based web services.
+			
+			REST stands for REpresentational State Transfer.
+		
+			In this, client makes a request for some information.
+			Server populates that information and sends that information
+			back to the client and client receives it in some
+			format which is suitable.
+			
+			Once client receives the data, it can be presented as per
+			the requirement.
+			
+			Typically, in Restful applications, the REST client
+			is a Java Script enabled client e.g.
+				Regular Java Script (Vanilla JS)
+				Angular
+				React JS
+				Vue JS
+				
+			Therefore, when the data arrives on the client side,
+			it is to be consumed in some format which is suitable
+			to the client.
+			
+			There are several formats available in which the data
+			can be consumed; but the most popular and frequently
+			used format is JSON.
+				JSON stands for Java Script Object Notation
+				
+			REpresentational:
+				The state of the resource is represented on client side
+				using some format which is suitable to the client.
+				Typically, it is JSON.
+				
+			State:
+				It indicates current values of the resource
+				that might be required by either client or server
+				
+			Transfer:
+				This state can be transferred either from Server to Client
+				or from Client to Server.
+				
+Implementing REST API:
+	Different technologies, platforms provide their own way to
+	implement REST API.	
+		E.g.
+			Java
+			DOT NET
+			Python
+			Node and Express JS
+			
+Implementing REST API using Java:
+	To implement REST API using Java, there are several
+	options available.
+	
+	The most commonly used options are:
+		1. Jersey Framework
+		2. Spring MVC Framework
+		3. Spring Boot Framework
+		
+	Jersey Framework:
+		An open source framework that provides support
+		for building REST API.
+		
+		Especially used by developers having knowledge on Java
+		but not about Spring.
+	
+	Spring MVC Framework:
+		This approach is generally useful when REST resources are
+		to be combined with the existing web application which is
+		built using Spring MVC.	
+		
+	Spring Boot Framework:
+		This approach is generally useful when the entire focus is
+		only upon building REST API.
+		
+		Spring Boot provides awesome support for REST implementation.
+		It is very much popular because it hides a lot of complexities.
+		
+		E.g.
+			1. Minimized Configuration
+			2. Embedded Tomcat Web Server (Web Container)
+			3. Ease of Deployment
+			
+	There are several options to build REST API using
+	Spring Boot.
+	
+	E.g.
+		1. Spring Boot Starters
+		2. Spring Boot CLI
+		3. Spring Initializer
+		
+	Spring Boot Starters:
+		This approach provides several plug-ins for Starter Projects
+		which are supported by some IDEs e.g. STS (Spring Tools Suite)
+
+	Spring Boot CLI:
+		It is a Command Line Interface which provides several commands
+		to build REST API implementation.
+		
+	Spring Initializer:
+		It is a web interface which allows to build the REST API specific
+		project.	
+		
+Building 1st Spring Boot Project:
+	1. Open Web Browser and hit the URL: 
+			start.spring.io
+			
+	2. Enter all the details about Project
+		E.g. 
+			Build Type [Maven / Gradle etc]
+			Spring Boot Version
+			Metadata [Group ID, Artifact, Name etc]
+			Java Version
+			
+	3. Add the required dependencies.
+		Initially 2 dependencies are required:
+			1. Web
+			2. Devtools
+			
+	4. Click "Generate" button to download project specific
+		ZIP file.
+		
+	5. Unzip that file to get Maven based project specific
+		folder.
+		
+	6. Import this Project into Eclipse Workspace
+		File -> Import -> Maven -> Existing Maven Projects
+		Browse the folder to apply.
+		
+
+	Spring Boot API:
+		Once the Spring Boot Project is created using Spring Initializer,
+		by default, one user defined class is given in the project.
+		
+		This class is annotated with @SpringBootApplication and provides
+		a main method that uses a class SpringApplication.
+		
+		@SpringBootApplication:
+			It is used to configure Spring Boot Application.
+			It is a combination of 3 annotations:
+				1. @Configuration
+				2. @ComponentScan
+				3. @EnableAutoConfiguration
+				
+		SpringApplication:
+			It is a class used to bootstrap the application.
+			It provides 'static run()' method that is used 
+			to kick start the embedded Tomcat.
+			
+		It is possible that the annotated class and the main class 
+		are different.
+		
+		In this case, the reference of 'Class' class for
+		that class type must be passed which is annotated with
+		@SpringBootApplication. 
+		
+		E.g.
+			@SpringBootApplication
+			public class MyConfiguration{
+			
+			}
+			
+			public class MySpringBootApplication {
+				public static void main(String args[]){
+					SpringApplication.run(MyConfiguration.class, args);
+				}
+			}
+			
+Building 1st REST API:
+	1. Change the Port Number of Embedded Tomcat:
+		By default, the embedded Tomcat given by
+		Spring Boot starts on Port 8080.
+		
+		Since 8080 is a very common port, it is recommended
+		to change it.
+		
+		To handle any project specific configuration, apart from
+		pom.xml, there is one more file used:
+			application.properties
+			
+		It is located in 'src/main/resources'
+		
+	2.  Create REST End Point:
+		REST APIs are accessed by REST clients using 
+		some URLs known as End Points.
+		
+		These end points are defined using a Java Class.
+		Once the class is defined, it must be informed to Spring Boot
+		that this class is not an ordinary class; rather
+		it is meant for defining REST End Points.
+		
+		This is done by annotating that class using
+		@RestController annotation.
+		
+		Once it is declared as REST Controller, it can define
+		End Points using some method.
+		
+		To configure that method as an End Point, annotate
+		that using @RequestMapping annotation.
+		
+	
+Data Conversion between Java Object and JSON:
+	The conversion between Java Object and JSON is done
+	using 3rd party library known as Jackson.
+	
+Implementing Layered Architecture:
+	Every REST API implementation generally uses Layered
+	Architecture.
+	
+	It mainly involves 3 layers:
+		1. Repository
+		2. Service
+		3. Controller
+	
+	Repository:
+		This layer is responsible for interacting with
+		Database to perform CRUD operations.
+		
+		It is implemented using a simple Java class however,
+		it must be declared as a Repository.
+		
+		This is done using @Repository annotation applied at the class level.
+		
+	Service:
+		This layer is responsible for handling business logic if any
+		required in the application.
+		
+		It is implemented using a simple Java class however,
+		it must be declared as a Service.
+		
+		This is done using @Service annotation applied at the class level.
+		
+	Controller:
+		This layer is used to interact with client.
+		It accepts requests from client and delivers response 
+		back to client.
+		
+		It is a Java class annotated using @RestController.
+		
+		
+TODO 7:
+	Create a Spring Boot project using Spring Initializer
+	and perform following operations:
+		1. Configure the Tomcat to start on port 9090
+		2. Copy previous Stock class and make changes as per the following:
+			Declare one more field:
+				establishmentYear (int)
+			According provide constructors, getters, setters etc.
+		3. Implement a layered architecture for building a REST
+			end point: /stock-data-api that returns all the available
+			stocks.
+			(Use In-Memory Collection)
+			
+		(Use proper packaging)
+		
+
+Parameterized URLs:
+	Sometimes, there is a need to fetch specific data
+	based upon some condition.
+	
+	In this case, the URL for the concerned End Point
+	must accept parameters.
+	
+	These parameters are configured using '{}' notation.
+	E.g.
+		/......URL...../{param1}/{param2}/...
+		
+	Once the parameterized URL is configured, it is necessary to bind the 
+	request specific parameter with the corresponding local variable
+	declared in the signature of request handling method.
+	
+	This is done using @PathVariable annotation.
+	It is to be applied at the method signature parameter level.
+	
+Handling HTTP POST Request:
+	Instead of fetching the data from server, client may
+	send some JSON data towards server to create a new resource.
+	
+	This is done by making HTTP POST request and server needs
+	to handle the same.
+	
+	Simplifying End Point Configuration:
+		It is possible to simplify configuration of end points
+		using the relevant annotations specific to HTTP typed
+		requests.
+		
+		E.g.
+			@GetMapping --> Handling GET
+			@PostMapping --> Handling POST
+			
+	Once the end point is configured to handle POST request and
+	the relevant method is defined to accept the data, it is necessary
+	to bind the data coming from client with the variable declared
+	in the signature of the request handling method.
+	
+	This is done using @RequestBody annotation.
+	It is to be applied at the signature parameter level.
+	
+Making POST Request:	
+	When the REST API is configured to accept POST request,
+	in real-time application, it will be sent using some
+	Java Script enabled client.
+	
+	However, in development phase, backend developer
+	needs to test the working of this kind of end point
+	without building any separate Java Script enabled application.
+	
+	This might be due to 2 reasons:
+		1. Back end developer does not known at all about Front End
+		2. Back end developer knows Front End as well but
+			does not want to invest time in creating a separate
+			Front End application just for this testing purpose
+			
+	This problem can be resolved using some dummy or fake REST client.
+	
+	There are so many such REST clients available.
+	
+	2 of them are commonly used:
+		1.  POSTMAN
+		2. 	Talend API Tester from Google
+		
+
+	URLs in Web Application Vs URLs in REST API 
+	
+	URLs in Web Application include Context Root whereas
+	it is not included in case of REST API.
+	
+	This is because, in REST API, Tomcat gets embedded
+	into the project.
+	
+	In typical web application, Monolithic architecture
+	is used. All the modules of the application reside
+	within the specific boundary of that application.
+	
+TODO 8:
+	Enhance REST API for Stock application in such a way that
+	it adds 3 more end points:
+		2. GET /stock-data-api/{id} 
+			Gets the stock against ID
+		3. GET /stock-data-api/{minYear}/{maxYear}
+			Gets the stocks having estYear between 
+				min and max values
+		4. POST /stock-data-api
+			Posts a new stock
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
