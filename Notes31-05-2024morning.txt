@@ -1,0 +1,214 @@
+31-05-2024morning
+
+Interaction with DB:
+	In real-time application, data is permanently maintained
+	inside some database table.
+	
+	Therefore, REST API has to interact with Database to perform
+	CRUD operations.
+	
+	In case of Java Based REST API, typically it can be handled
+	using several options e.g.
+		1. JDBC
+		2. Hibernate (Any ORM)
+		3. JPA
+		
+	In case of the options mentioned above, developer has to provide
+	some persistence logic. 
+	
+	Developer has to handle some configuration.
+	
+	This can be further simplified by completely hiding
+	the persistence related code from developer.
+	
+	This is made possible using Spring Data JPA.
+	
+	It is a module that hides the entire persistence logic.
+	It standardizes the persistence layer with the help
+	of generic interfaces.
+	
+	This is possible because across various domains, the overall
+	CRUD related functionality remains same; only
+	the entity type and ID type change.
+	
+	Since the entire implementation of persistence logic is taken away
+	from the developer, it is just required to use the reference of some
+	interface type.
+	
+	The most frequently used interface from Spring Data JPA is:
+		JpaRepository<Entity, ID>
+		
+Configuring Spring Data JPA:
+	Since Spring Data JPA hides the complexity of persistence logic,
+	it needs to understand database configuration.
+	
+	E.g.
+		Database URL, Username, Password, Show SQL,
+		HBM 2 DDL
+		
+		These configurations are done using application.properties.
+	
+		In Spring Data JPA enabled application, classes annotated with
+		@RestController, @Service and even @Repository can be
+		scanned using @SpringBootApplication(scanBasePackages) option.
+		
+		However, if it is a JpaRepository and if it is present inside 
+		a package which is other than that of configuration specific
+		class, then it needs to be scanned separately.
+		
+		This is done using @EnableJpaRepositorties annotation. It is
+		applied at the class level of Configuration specific class.
+		
+		Similarly, JPA entities (@Entity), if available inside 
+		the package which is other than that of configuration specific
+		class, then they also need to be scanned.
+		
+		This is done using @EntityScan annotation. It is
+		applied at the class level of Configuration specific class.
+		
+	Updation and Deletion:
+		To perform UPDATE operation, 2 types of HTTP requests are used:
+			1. PUT
+			2. PATCH
+			
+		Both of them are meant for updation.
+			PUT is used when the entire resource is to be updated except ID.
+			Sometimes, it is necessary to update resource partially.
+			In this case PATCH request is used.
+			
+		
+		To perform DELETE operation, HTTP DELETE request is used.
+		Typically this is done against ID.
+		
+TODO 9:
+	Enhance TODO 8 in such a way that the application
+	interacts with Database.
+	
+		
+
+
+31-05-2024morning 
+
+Spring Security:
+	Security is one of the enterprise service requirements.
+	Spring's Security model provides awesome support to
+	secure REST APIs or End Points.
+	
+	It mainly works upon 2 aspects:
+		1. Authentication
+		2. Authorization
+		
+	Authentication:
+		It indicates whether a user is allowed to enter into the system
+		or not.
+		
+		Typically this is done against User's credentials
+		like: Username and Password
+		
+	Authorization:
+		It tells about what previleges user has got to perform certain
+		operation.
+		
+		E.g.
+			Regular users can view their own information
+			but cannot view other's information and even
+			cannot update their own information.
+			
+			Administrators can not only view other user's
+			information but also update it.
+			
+	Security Model:
+		Typically in any security model, there are 2 
+		aspects:
+			1. Users
+			2. Roles
+			
+		Users:
+			These are the actual users (Human Beings)
+			using that system.
+			The count is not fixed. (In some case it might be fixed)
+			
+		Roles:
+			These specify something about the user itself.
+			Application has fixed number of roles.
+			Multiple users may fall under same role
+			or even a single user may have many roles.
+			
+	When the Spring Boot project is created by adding 
+	Spring Security as a Dependency, by default, security
+	is applied on every resource.
+	
+	It is not only applied on existing resources but also 
+	on non-existing resources.
+	
+	E.g.
+		If URL is sent for any resource irrespective of whether it exists
+		or not, first it asks to sign-in.
+		Then it tells about that.
+	
+	Configuring Security:
+		By default, the project with security dependency provides
+		a default user with name: user and a password which is
+		randomly generated in the logs.
+		
+		In order to override these default settings, relevant
+		entries can be made into application.properties
+		
+	Authentication:
+		In secured applications, there are typically 2 ways by which users can
+		be authenticated.
+			1. Form Based Authentication
+			2. Basic
+			
+		In Form Based Authentication, some form is provided asking
+		for username and password.
+		
+		In BASIC authentication, a client can send Authorization Header.
+		The HEADER information is encoded using Base64 Encoder
+		
+	Configuring Security for Users and Roles:
+		Even though security can be configured using
+		application.properties, it is useful only in
+		Development environment and not for Production
+		environment.
+		
+		This is because, this option allows to configure
+		only 1 user. In real time project, there might be
+		many users.
+		
+		This option handles only Authentication but not
+		Authorization.
+		
+		Therefore, it is necessary to configure Users of the
+		system and assign Roles to them for further authorization.
+		
+		Typically this can be done by 3 ways:
+			1. In-Memory Based Authentication
+			2. Using Database
+			3. Using LDAP (Lightweight Directory Access Protocol) 
+		
+	
+		To perform these configurations, there are relevant beans 
+		required:
+			1. UserDetailsService
+			2. SecurityFilterChain
+			
+		UserDetailsService maintains the repository of Users with their Roles
+		
+		SecurityFilterChain is the object used to configure Spring
+		Security.
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
