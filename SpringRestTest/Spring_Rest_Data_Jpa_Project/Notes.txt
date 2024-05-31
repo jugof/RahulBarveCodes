@@ -1,0 +1,95 @@
+Interaction with DB:
+	In real-time application, data is permanently maintained
+	inside some database table.
+	
+	Therefore, REST API has to interact with Database to perform
+	CRUD operations.
+	
+	In case of Java Based REST API, typically it can be handled
+	using several options e.g.
+		1. JDBC
+		2. Hibernate (Any ORM)
+		3. JPA
+		
+	In case of the options mentioned above, developer has to provide
+	some persistence logic. 
+	
+	Developer has to handle some configuration.
+	
+	This can be further simplified by completely hiding
+	the persistence related code from developer.
+	
+	This is made possible using Spring Data JPA.
+	
+	It is a module that hides the entire persistence logic.
+	It standardizes the persistence layer with the help
+	of generic interfaces.
+	
+	This is possible because across various domains, the overall
+	CRUD related functionality remains same; only
+	the entity type and ID type change.
+	
+	Since the entire implementation of persistence logic is taken away
+	from the developer, it is just required to use the reference of some
+	interface type.
+	
+	The most frequently used interface from Spring Data JPA is:
+		JpaRepository<Entity, ID>
+		
+Configuring Spring Data JPA:
+	Since Spring Data JPA hides the complexity of persistence logic,
+	it needs to understand database configuration.
+	
+	E.g.
+		Database URL, Username, Password, Show SQL,
+		HBM 2 DDL
+		
+		These configurations are done using application.properties.
+	
+		In Spring Data JPA enabled application, classes annotated with
+		@RestController, @Service and even @Repository can be
+		scanned using @SpringBootApplication(scanBasePackages) option.
+		
+		However, if it is a JpaRepository and if it is present inside 
+		a package which is other than that of configuration specific
+		class, then it needs to be scanned separately.
+		
+		This is done using @EnableJpaRepositorties annotation. It is
+		applied at the class level of Configuration specific class.
+		
+		Similarly, JPA entities (@Entity), if available inside 
+		the package which is other than that of configuration specific
+		class, then they also need to be scanned.
+		
+		This is done using @EntityScan annotation. It is
+		applied at the class level of Configuration specific class.
+		
+	Updation and Deletion:
+		To perform UPDATE operation, 2 types of HTTP requests are used:
+			1. PUT
+			2. PATCH
+			
+		Both of them are meant for updation.
+			PUT is used when the entire resource is to be updated except ID.
+			Sometimes, it is necessary to update resource partially.
+			In this case PATCH request is used.
+			
+		
+		To perform DELETE operation, HTTP DELETE request is used.
+		Typically this is done against ID.
+		
+TODO 9:
+	Enhance TODO 8 in such a way that the application
+	interacts with Database.
+	
+		
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	

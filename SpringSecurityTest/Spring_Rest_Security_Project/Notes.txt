@@ -1,0 +1,123 @@
+Spring Security:
+	Security is one of the enterprise service requirements.
+	Spring's Security model provides awesome support to
+	secure REST APIs or End Points.
+	
+	It mainly works upon 2 aspects:
+		1. Authentication
+		2. Authorization
+		
+	Authentication:
+		It indicates whether a user is allowed to enter into the system
+		or not.
+		
+		Typically this is done against User's credentials
+		like: Username and Password
+		
+	Authorization:
+		It tells about what previleges user has got to perform certain
+		operation.
+		
+		E.g.
+			Regular users can view their own information
+			but cannot view other's information and even
+			cannot update their own information.
+			
+			Administrators can not only view other user's
+			information but also update it.
+			
+	Security Model:
+		Typically in any security model, there are 2 
+		aspects:
+			1. Users
+			2. Roles
+			
+		Users:
+			These are the actual users (Human Beings)
+			using that system.
+			The count is not fixed. (In some case it might be fixed)
+			
+		Roles:
+			These specify something about the user itself.
+			Application has fixed number of roles.
+			Multiple users may fall under same role
+			or even a single user may have many roles.
+			
+	When the Spring Boot project is created by adding 
+	Spring Security as a Dependency, by default, security
+	is applied on every resource.
+	
+	It is not only applied on existing resources but also 
+	on non-existing resources.
+	
+	E.g.
+		If URL is sent for any resource irrespective of whether it exists
+		or not, first it asks to sign-in.
+		Then it tells about that.
+	
+	Configuring Security:
+		By default, the project with security dependency provides
+		a default user with name: user and a password which is
+		randomly generated in the logs.
+		
+		In order to override these default settings, relevant
+		entries can be made into application.properties
+		
+	Authentication:
+		In secured applications, there are typically 2 ways by which users can
+		be authenticated.
+			1. Form Based Authentication
+			2. Basic
+			
+		In Form Based Authentication, some form is provided asking
+		for username and password.
+		
+		In BASIC authentication, a client can send Authorization Header.
+		The HEADER information is encoded using Base64 Encoder
+		
+	Configuring Security for Users and Roles:
+		Even though security can be configured using
+		application.properties, it is useful only in
+		Development environment and not for Production
+		environment.
+		
+		This is because, this option allows to configure
+		only 1 user. In real time project, there might be
+		many users.
+		
+		This option handles only Authentication but not
+		Authorization.
+		
+		Therefore, it is necessary to configure Users of the
+		system and assign Roles to them for further authorization.
+		
+		Typically this can be done by 3 ways:
+			1. In-Memory Based Authentication
+			2. Using Database
+			3. Using LDAP (Lightweight Directory Access Protocol) 
+		
+	
+		To perform these configurations, there are relevant beans 
+		required:
+			1. UserDetailsService
+			2. SecurityFilterChain
+			
+		UserDetailsService maintains the repository of Users with their Roles
+		
+		SecurityFilterChain is the object used to configure Spring
+		Security.
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
