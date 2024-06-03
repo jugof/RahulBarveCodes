@@ -1,0 +1,74 @@
+CENTRE FOR DEVELOPMENT OF ADVANCE COMPUTING
+Advance Computing Training School
+
+Course Name: PG Diploma in Advanced Computing		Batch: March 2024
+Module Name: J2EE						Date: 03/06/2024
+Student Name:							Max Marks: 40
+Roll No: 								Duration: 
+Set - 2
+
+Q1.
+Problem Definition 1 a:
+
+Create a Hibernate based application that is used to maintain data about Airlines as per the following:
+a) Airline Id (Numeric)
+1. Name (Character Based)
+2. Employee Count (Numeric)
+
+Write Java programs as per the following:
+	Program 1:
+		Accept user input for an airline data and store it into the database.
+
+	Program 2:
+Accept Employee Count range and display those airlines matching with the Employee Count range.
+
+		Display appropriate message if no data found.
+
+Note: Handle Mapping and Configuration without XML
+
+
+Problem Definition 1 b:
+
+Create a Spring based application that is used to configure Beans holding an information about Airline as mentioned in Problem Definition 1.
+
+(DO NOT COPY AND PASTE THE CLASS. CREATE A SEPARATE ONE)
+
+The application must configure 2 beans as per the following:
+a. A bean of type Airline holding Airline information
+1. A bean of type java.util.Map holding Airline ID as a Key and the entire Airline as a Value.
+
+Write a Java program as per the following:
+10) Load both the beans
+1. Check whether the loaded Airline bean is available within the loaded Map bean or not and display the appropriate message.
+
+Note:
+Handle Java Based Configuration
+Implement LAZY loading for both the beans
+
+Problem Definition 2:
+Create a REST API that allows users to manage data about Pathological Laboratories.
+
+Laboratory Information:
+	ID 		-  Numeric
+	Name		-  Character Based
+	Address	-  Character Based (A Detailed Address including City Name)
+	Contact No	-  Character Based
+
+End-Points Description:
+GET	/labs-api
+Loads and displays all the Labs data in JSON format
+
+GET	/labs-api/ID
+Loads and displays data about a specific lab against its ID
+
+GET	/labs-api/CityName
+Loads and displays data about specific labs with matching city names
+
+Note:
+Use MySQL Database to as a persistent store
+Enter some initial records into the corresponding table. (At least 5)
+Use Layered Architecture  -Controller – Service – Repository
+Use 6767 Port Number for the Embedded Tomcat
+
+
+

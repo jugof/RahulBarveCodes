@@ -1,0 +1,94 @@
+CENTRE FOR DEVELOPMENT OF ADVANCE COMPUTING
+Advance Computing Training School
+
+Course Name: PG Diploma in Advanced Computing	Batch: March 2024
+Module Name: J2EE						Date: 03/06/2024
+Student Name:							Max Marks: 40
+Roll No: 								Duration: 
+Set - 1
+
+Q1.
+Solve any One Problem on 1 and 2
+============================
+
+Problem Definition 1 a:
+
+Create a Hibernate based application that is used to maintain data about Books as per the following:
+1. Book Id (Numeric)
+1. Title (Character Based)
+2. Author (Character Based)
+3. Price (Numeric)
+
+Write Java programs as per the following:
+	Program 1:
+		Accept user input for a book data and store it into the database.
+
+	Program 2:
+Accept Author Name and Price range and display those books matching with the Author Name and Price range.
+
+		Display appropriate message if no data found.
+
+Note: Handle Mapping and Configuration without XML
+
+
+Problem Definition 1 b:
+
+Create a Spring based application that is used to configure Beans holding an information about Book as mentioned in Problem Definition 1.
+(DO NOT COPY AND PASTE THE CLASS. CREATE A SEPARATE ONE)
+
+The application must configure 2 beans as per the following:
+1. A bean of type Book holding Book information
+1. A bean of type java.util.List holding several Books.
+
+Write a Java program as per the following:
+1. Load both the beans
+1. Check whether the loaded Book bean is available within the loaded List bean or not and display the appropriate message.
+Note:
+Handle Java Based Configuration
+Implement LAZY loading for both the beans
+
+Problem Definition 2:
+Create a REST API that allows users to manage data about Pre-Owned Cars for SALE.
+
+Car Information:
+	ID 		-  Numeric
+	Make		-  Character Based
+	Model		-  Character Based
+	Price		-  Numeric
+	Year		-  Numeric
+
+End-Points Description:
+
+GET	/cars-api
+Loads and displays all the Cars data in JSON format
+
+GET	/cars-api/ID
+Loads and displays data about a specific car against its ID
+
+GET	/cars-api/minPrice/maxPrice
+Loads and displays data about specific cars with matching price range
+
+GET	/cars-api/make/year
+Loads and displays data about specific cars with matching make and year
+
+GET	/cars-api/make
+Loads and displays data about specific cars with matching make
+
+POST	/car-api
+Adds a new car for SALE
+
+Note:
+Use In-Memory Collection to as a persistent store
+Use Layered Architecture  -Controller – Service – Repository
+Use 8989 Port Number for the Embedded Tomcat
+
+
+
+
+
+
+
+
+
+
+
